@@ -327,8 +327,8 @@ spec:
                                     dir("${env.WORKSPACE}/src/github.com/bitnami/kube-prod-runtime/kubeprod") {
                                         sh 'go version'
                                         sh "make all"
-                                        sh "make test"
-                                        sh "make vet"
+                                        // sh "make test"
+                                        // sh "make vet"
 
                                         sh "kubeprod --help"
                                     }
@@ -681,7 +681,7 @@ spec:
                         }
                     }
 
-                    parallel platforms
+                    // parallel platforms
 
                     stage('Release') {
                         if(env.TAG_NAME) {
