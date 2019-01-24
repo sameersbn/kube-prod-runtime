@@ -98,7 +98,7 @@ add_remote() {
 filter_branches() {
   local pattern="${1?regex not specified}"
   # git branch --remote --format '%(refname:lstrip=-1)' --list "${pattern}" # requires git 2.17.1
-  git branch --remote --list 'origin/release-*' | cut -d'/' -f2
+  git branch --remote --list "${pattern}" | cut -d'/' -f2
 }
 
 branch_exists() {
