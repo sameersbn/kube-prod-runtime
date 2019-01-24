@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 UPSTREAM_REPO_URL="${UPSTREAM_REPO_URL:-https://github.com/bitnami/kube-prod-runtime}"
-DEVELOPMENT_REPO_URL="${DEVELOPMENT_REPO_URL:-https://github.com/bitnami-bot/bitnami-kube-prod-runtime}"
+DEVELOPMENT_REPO_URL="${DEVELOPMENT_REPO_URL:-https://github.com/bitnami-bot/kube-prod-runtime}"
 MANIFESTS_IMAGES_JSON="manifests/components/images.json"
 
 GIT_AUTHOR_NAME="${GIT_AUTHOR_NAME:-Bitnami Containers}"
