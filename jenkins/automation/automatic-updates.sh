@@ -25,14 +25,13 @@ cd "${repo_dir}"
 BRANCHES=("master")
 for b in $(filter_branches "origin/${RELEASES_BRANCH_GLOB}" | sort -Vr | head -n2); do
   BRANCHES+=("${b}")
-  git checkout "${b}" --quiet
 done
 
 configure_git
 add_remote "${GITHUB_USER}" "https://${GITHUB_USER}@${DEVELOPMENT_REPO_URL/https:\/\/}"
 
 for base_branch in "${BRANCHES[@]}"; do
-  git checkout "${base_branch}" --quiet
+  git checkout -b "${base_branch}" "origin/${base_branch}" --quiet
   if [[ -f "${MANIFESTS_IMAGES_JSON}" ]]; then
     for component in $(grep -oE "${IMAGE_NAME_REGEX}" "${MANIFESTS_IMAGES_JSON}"); do
       info "[${base_branch}] Checking updates for '${component%%:*}'..."

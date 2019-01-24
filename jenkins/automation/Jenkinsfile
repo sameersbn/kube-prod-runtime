@@ -1,0 +1,34 @@
+#!groovy
+
+// Force using our pod
+def label = env.BUILD_TAG.replaceAll(/[^a-zA-Z0-9-]/, '-').toLowerCase()
+
+podTemplate(
+  cloud: 'kubernetes-cluster',
+  label: label,
+  yaml: """
+apiVersion: v1
+kind: Pod
+"""
+) {
+  node(label) {
+    withEnv([
+      "PATH+JQ=${tool 'jq'}",
+      "PATH+HUB=${tool 'hub'}",
+      "UPSTREAM_REPO_URL=https://github.com/sameersbn/kube-prod-runtime",
+      "DEVELOPMENT_REPO_URL=https://github.com/chart-bot/sameersbn-kube-prod-runtime",
+    ]) {
+      checkout scm
+      withCredentials([usernamePassword(credentialsId: 'github-chart-bot', usernameVariable: 'GITHUB_USER', passwordVariable: 'GITHUB_TOKEN')]) {
+        sh './jenkins/automation/automatic-updates.sh ${PWD}'
+      }
+
+      // sh "git clone https://github.com/sameersbn/kube-prod-runtime.git"
+      // dir('kube-prod-runtime') {
+      //     withCredentials([usernamePassword(credentialsId: 'github-chart-bot', usernameVariable: 'GITHUB_USER', passwordVariable: 'GITHUB_TOKEN')]) {
+      //       sh './jenkins/automation/automatic-updates.sh .'
+      //     }
+      // }
+    }
+  }
+}
