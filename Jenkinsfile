@@ -672,7 +672,7 @@ spec:
                         }
                     }
 
-                    parallel platforms
+                    // parallel platforms
 
                     stage('Release') {
                         if (env.GITHUB_TAG_NAME) {
