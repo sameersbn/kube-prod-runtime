@@ -8,6 +8,6 @@
     "grafana": "bitnami/grafana:6.1.6-r3",
     "kibana": "bitnami/kibana:6.7.2-r1",
     "nginx-ingress-controller": "bitnami/nginx-ingress-controller:0.24.1-r4",
-    "oauth2_proxy": "bitnami/oauth2-proxy:3.2.0-r34",
+    "oauth2_proxy": "bitnami/oauth2-proxy:3.2.0-r35",
     "prometheus": "bitnami/prometheus:2.9.2-r0"
 }
